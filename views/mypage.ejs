@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Meetal</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/matcha.css">
+  </head>
+  <body>
+    <div class='background_gray'>
+        <div class='see_all_img'>
+        <% if (row[0]['user_snap_profile']) { %>
+          <img class='arrow_cross' src="/images/icon/cross.png">
+          <img class='arrow_left' src="/images/icon/arrow-left.png">
+          <% if (row[0]['user_snap_profile']) { %><div class='img_big img_block'><img src="/images/user_img/<%= row[0]['user_snap_profile']%><%} %>"></div>
+          <% for (var i = 1; i != 6; i++) { if (row[0]['user_snap' + i] && row[0]['user_snap_profile'] != row[0]['user_snap' + i]) {%><div class='img_big'><img src="/images/user_img/<%= row[0]['user_snap' + i]%>"></div><% } }%>
+          <img class='arrow_right' src="/images/icon/arrow-right.png"><% } %>
+        </div>
+      </div>
+  <% include header.ejs %>
+    <div id="cont_wrapper_page">
+      <div class='content_user'>
+        <figure>
+            <a href='#'><img id='img_profil'></a>
+        </figure>
+        <h2></h2>
+      </div>
+      <ul class='navbar'>
+       <li><a class='navbar_hover' href="#">Description</a></li>
+       <li><a href="#">Musique</a></li>
+       <li><a href="#">Centre d'interet</a></li>
+      </ul>
+      <div class='cont_user_bottom'>
+            <div class='cont_description'>
+              <div class='nav_cont_desc'><h2>Ma description</h2>
+                <% if (row[0]['user_biography']) { %>
+                  <%= row[0]['user_biography'] %>
+                <% } 
+                else { 
+                    %>Non renseigné<% } %></div>
+              <div class='nav_bottom_cont'>
+                <h2>Ma taille</h2>
+                <p><%if (row[0]['user_size']) { %><%= (""+row[0]['user_size']).split("")[0] + ',' + (""+row[0]['user_size']).split("")[1] + (""+row[0]['user_size']).split("")[2] + ' mètres'%><% } else {%>Non renseigné<% } %></p>
+              </div><div class='nav_bottom_cont'>
+              <h2>Mon poids</h2>
+              <p><%if (row[0]['user_poid']) { %><%= row[0]['user_poid'] + ' Kilos'%><% } else {%>Non renseigné<% } %></p>
+               </div><div class='nav_bottom_cont'>
+              <h2>Mes cheveux</h2>
+              <p><%if (row[0]['user_hairs']) { %><%= row[0]['user_hairs'] %><% } else {%>Non renseigné<% } %></p>
+              </div><div class='nav_bottom_cont'>
+              <h2>Mes yeux</h2>
+              <p><%if (row[0]['user_eyes']) { %><%= row[0]['user_eyes'] %><% } else {%>Non renseigné<% } %></p>
+              </div>
+            </div>
+            <div class='cont_music'>
+              <%if (row[0]['user_music']) { for(var i = 0; i != 5; i++) { if (row[0]['user_music'].split(';')[i] != ''){%><div class='my_list_music'><%= row[0]['user_music'].split(';')[i]; %></div><% }} } else {%>Non renseigné<% } %>
+              </div>
+            <div class='cont_interest'>
+              <%if (row[0]['user_tags']) { for(var i = 0; row[0]['user_tags'].split(';')[i]; i++) { if (row[0]['user_tags'].split(';')[i] != ''){%><div class='my_list_music'><%= String(row[0]['user_tags'].split(';')[i]).charAt(0).toUpperCase() + String(row[0]['user_tags'].split(';')[i]).substring(1).toLowerCase(); %></div><% }} } else {%>Non renseigné<% } %>
+              </div>
+            </div>
+      </div>
+    </div>
+  <% include footer.ejs %>
+
+   <script src="/jquery-3.1.1.min.js"></script>
+   <script src="/socket.io/socket.io.js"></script>
+   <script type="text/javascript" src="http://l2.io/ip.js?var=myip"></script>
+   <script src="/mypage.js"></script>
+  </body>
+</html>

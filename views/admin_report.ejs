@@ -1,0 +1,23 @@
+<div class="edit_edit">
+    <div class="wrapper">
+        <ul>
+            <% for (i = 0; actions[i]; i++){ 
+              var find = false;
+              var other = false;
+              for (o = 0; row[o]; o++) {
+                if (row[o]['user_id'] == actions[i]['action_sender'])
+                {
+                  find = row[o]['user_login'];
+                  for (z = 0; row[z]; z++)
+                  {
+                    if (row[z]['user_id'] == actions[i]['action_receiver'])
+                      other = row[z]['user_login'];
+                  }
+                }
+              }
+            if (find) {%> 
+              <li style='padding: 15px;'><%= find.toUpperCase() %> a reporter <%= other.toUpperCase() %></li>
+            <% } }%>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="edit_edit">
+    <div class='send_done'>Les changement apporté on été modifié.</div>
+    <h2>Information à propos de mes goûts</h2>
+    Groupe de Musique<br><br>
+    1# <input type="text" name="music_1" value='<% if(row[0]['user_music'] && row[0]['user_music'].split(";")[0]) {%><%= row[0]['user_music'].split(";")[0]%><% } %>'/><br>
+    2# <input type="text" name="music_2" value='<% if(row[0]['user_music'] && row[0]['user_music'].split(";")[1]) {%><%= row[0]['user_music'].split(";")[1]%><% } %>'/><br>
+    3# <input type="text" name="music_3" value='<% if(row[0]['user_music'] && row[0]['user_music'].split(";")[2]) {%><%= row[0]['user_music'].split(";")[2]%><% } %>'/><br>
+    4# <input type="text" name="music_4" value='<% if(row[0]['user_music'] && row[0]['user_music'].split(";")[3]) {%><%= row[0]['user_music'].split(";")[3]%><% } %>'/><br>
+    5# <input type="text" name="music_5" value='<% if(row[0]['user_music'] && row[0]['user_music'].split(";")[4]) {%><%= row[0]['user_music'].split(";")[4]%><% } %>'/><br>
+    <br>
+    <h2>Mes centre d'interet</h2>
+    <br>
+    <input type="text" id='tags' val=''>
+    <ul class="my_tag">
+    </ul>
+    <br><br>
+    <input id='send_change_gout' style='background: lightgreen;' type='submit' value='Changer'>
+    <br>
+</div>
+<script>
+  $.holdReady( true );
+  $.getScript( "/edit_gout.js", function() {
+    $.holdReady( false );
+  });
+</script>

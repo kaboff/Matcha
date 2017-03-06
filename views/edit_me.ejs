@@ -1,0 +1,45 @@
+<div class="edit_edit">
+<div class='send_done'>Les changement apporté on été modifié.</div>
+    <h2>Information à propos de moi</h2>
+  Ma taille<br>
+  <select id='edit_taille'><option value=''></option></select><br>
+  Mon poids<br>
+  <select id='edit_poids'><option value=''></option></select><br>
+  Couleur des yeux<br>
+  <select id='edit_eyes'>
+      <option value=''></option>
+      <option value='Bleu'>Bleu</option>
+      <option value='Vert'>Vert</option>
+      <option value='Jaune'>Jaune</option>
+      <option value='Marron'>Marron</option>
+      <option value='Noir'>Noir</option>
+      <option value='Rouge'>Rouge</option>
+      <option value='Violet'>Violet</option>
+      <option value='Blanc'>Blanc</option>
+      <option value='Orange'>Orange</option>
+  </select><br>
+  Couleur des cheveux<br>
+  <select id='edit_hair'>
+      <option value=''></option>
+      <option value='Bleu'>Bleu</option>
+      <option value='Vert'>Vert</option>
+      <option value='Blond'>Blond/Blonde</option>
+      <option value='Brun'>Brun/Brune</option>
+      <option value='Noir'>Noir</option>
+      <option value='Rouge'>Rouge</option>
+      <option value='Violet'>Violet</option>
+      <option value='Blanc'>Blanc</option>
+      <option value='Chatain'>Chatain</option>
+      <option value='Roux'>Roux</option>
+  </select><br><br>
+  Ma description<br><textarea id='me_desc'></textarea>
+  <br><br>
+  <input id='send_change_me' style='background: lightgreen;' type='submit' value='Changer'>
+</div>
+
+<script>
+  $.holdReady( true );
+  $.getScript( "/edit_me.js", function() {
+    $.holdReady( false );
+  });
+</script>

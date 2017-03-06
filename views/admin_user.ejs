@@ -1,0 +1,22 @@
+<div class="edit_edit">
+<br>
+    <div class="wrapper_admin"'>
+        <table>
+          <tbody>
+              <% for (i = 0; row[i]; i++){ %>
+              <tr <% if (row[i]['user_sex'] == 1) { %>style="background: pink;"<%} else {%>style="background: #40bafd;"<%}%>>
+                  <td class="rank"><% if (!row[i]['user_admin']) {%><i class='admin_delete'>X</i><i class='admin_set'>ADMIN</i><% } else {%>Master<% } %><img id="" src="/images/<% if (row[i]['user_snap_profile']) { %>user_img/<%= row[i]['user_snap_profile'] %><% } else {%>skull.png<%}%>"></td>
+                  <td class="team"><%= row[i]['user_login'] %></td>
+                  <td class='id_user' hidden><%= row[i]['user_id'] %></td>
+                </tr>
+              <% } %>
+          </tbody>
+        </table>
+      </div>
+</div>
+<script>
+  $.holdReady( true );
+  $.getScript( "/admin_user.js", function() {
+    $.holdReady( false );
+  });
+</script>

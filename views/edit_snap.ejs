@@ -1,0 +1,98 @@
+<div id='snap'>
+<div class='send_done'>Votre image a bien été importé.</div>
+        <div id="cont_snap">
+          <% if (row[0]['user_snap1']) { %>
+              <div id='idblockimg1' class='idblocknoimg'><img id='snap1' src="/images/user_img/<%= row[0]['user_snap1'] %>"></div>
+          <% } else { %>
+            <div id='idblockimg1' class='idblocknoimg'><div style='margin-top: 65px;'>Aucune photo</div></div>
+            <% } %>
+          <br><br><br>
+          <input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-2" hidden />
+          <label for="file-1"><span id='span1'>Choisissez une image...</span></label>
+          <br><br>
+          <button id='input_upload1' class="input_upload" onclick="upload_xhr(1);">UPLOAD</button>
+          <button <% if (!row[0]['user_snap1']) { %>style='display: none'<% } %> id='input_delete1' class="input_delete">SUPPRIMER</button>
+          <button id='input_clear1' class="input_clear" onclick="clear_div(1);">CLEAR</button>
+          <br><br>
+          <button <% if (!row[0]['user_snap1']) { %>style='display: none'<% } %> id='input_profile1' class="input_profile" onclick="change_snap_profile(1);">Choisir comme photo de profil</button>           
+        </div>
+      </div>
+      <div id='snap'>
+        <div id="cont_snap">
+                    <% if (row[0]['user_snap2']) { %>
+              <div id='idblockimg2' class='idblocknoimg'><img id='snap2' src="/images/user_img/<%= row[0]['user_snap2'] %>"></div>
+          <% } else { %>
+            <div id='idblockimg2' class='idblocknoimg'><div style='margin-top: 65px;'>Aucune photo</div></div>
+            <% } %>
+          <br><br><br>
+          <input type="file" name="file-2[]" id="file-2" class="inputfile inputfile-2" hidden />
+          <label for="file-2"><span id='span2'>Choisissez une image...</span></label>
+          <br><br>
+          <button id='input_upload2' class="input_upload" onclick="upload_xhr(2);">UPLOAD</button>
+          <button <% if (!row[0]['user_snap2']) { %>style='display: none'<% } %>id='input_delete2' class="input_delete">SUPPRIMER</button>
+          <button id='input_clear2' class="input_clear" onclick="clear_div(2);">CLEAR</button>
+          <br><br>
+          <button <% if (!row[0]['user_snap2']) { %>style='display: none'<% } %>id='input_profile2' class="input_profile" onclick="change_snap_profile(2);">Choisir comme photo de profil</button> 
+        </div>
+      </div>
+      <div id='snap'>
+        <div id="cont_snap">
+            <% if (row[0]['user_snap3']) { %>
+              <div id='idblockimg3' class='idblocknoimg'><img id='snap3' src="/images/user_img/<%= row[0]['user_snap3'] %>"></div>
+          <% } else { %>
+            <div id='idblockimg3' class='idblocknoimg'><div style='margin-top: 65px;'>Aucune photo</div></div>
+            <% } %>
+          <br><br><br>
+          <input type="file" name="file-3[]" id="file-3" class="inputfile inputfile-2" hidden />
+          <label for="file-3"><span id='span3'>Choisissez une image...</span></label>
+          <br><br>
+          <button id='input_upload3' class="input_upload" onclick="upload_xhr(3);">UPLOAD</button>
+            <button <% if (!row[0]['user_snap3']) { %>style='display: none'<% } %>id='input_delete3' class="input_delete">SUPPRIMER</button>
+          <button id='input_clear3' class="input_clear" onclick="clear_div(3);">CLEAR</button>
+          <br><br>
+          <button <% if (!row[0]['user_snap3']) { %>style='display: none'<% } %>id='input_profile3' class="input_profile" onclick="change_snap_profile(3);">Choisir comme photo de profil</button>      
+        </div>
+      </div>
+      <div id='snap'>
+        <div id="cont_snap">
+                    <% if (row[0]['user_snap4']) { %>
+              <div id='idblockimg4' class='idblocknoimg'><img id='snap4' src="/images/user_img/<%= row[0]['user_snap4'] %>"></div>
+          <% } else { %>
+            <div id='idblockimg4' class='idblocknoimg'><div style='margin-top: 65px;'>Aucune photo</div></div>
+            <% } %>
+          <br><br><br>
+          <input type="file" name="file-4[]" id="file-4" class="inputfile inputfile-2" hidden />
+          <label for="file-4"><span id='span4'>Choisissez une image...</span></label>
+          <br><br>
+          <button id='input_upload4' class="input_upload" onclick="upload_xhr(4);">UPLOAD</button>
+            <button <% if (!row[0]['user_snap4']) { %>style='display: none'<% } %>id='input_delete4' class="input_delete">SUPPRIMER</button>
+          <button id='input_clear4' class="input_clear" onclick="clear_div(4);">CLEAR</button>
+          <br><br>       
+          <button <% if (!row[0]['user_snap4']) { %>style='display: none'<% } %>id='input_profile4' class="input_profile" onclick="change_snap_profile(4);">Choisir comme photo de profil</button>
+        </div>
+      </div>
+      <div id='snap'>
+        <div id="cont_snap">
+                    <% if (row[0]['user_snap5']) { %>
+              <div id='idblockimg5' class='idblocknoimg'><img id='snap5' src="/images/user_img/<%= row[0]['user_snap5'] %>"></div>
+          <% } else { %>
+            <div id='idblockimg5' class='idblocknoimg'><div style='margin-top: 65px;'>Aucune photo</div></div>
+            <% } %>
+          <br><br><br>
+          <input type="file" name="file-5[]" id="file-5" class="inputfile inputfile-2" hidden />
+          <label for="file-5"><span id='span5'>Choisissez une image...</span></label>
+          <br><br>
+          <button id='input_upload5' class="input_upload" onclick="upload_xhr(5);">UPLOAD</button>
+            <button <% if (!row[0]['user_snap5']) { %>style='display: none'<% } %>id='input_delete5' class="input_delete">SUPPRIMER</button>
+          <button id='input_clear5' class="input_clear" onclick="clear_div(5);">CLEAR</button>
+          <br><br>
+          <button <% if (!row[0]['user_snap5']) { %>style='display: none'<% } %>id='input_profile5' class="input_profile" onclick="change_snap_profile(5);">Choisir comme photo de profil</button> 
+        </div>
+      </div>
+
+<script>
+  $.holdReady( true );
+  $.getScript( "/edit_snap.js", function() {
+    $.holdReady( false );
+  });
+</script>

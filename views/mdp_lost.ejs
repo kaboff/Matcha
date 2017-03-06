@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Meetal</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/index_tmp.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  </head>
+  <body>
+
+    <header id="wrap_img">
+        <img id='logo' src="/images/logo.png">
+      </header>
+    <div class="cont_wrapper">
+        <div style='display: none; color:green;' id='send_success'><b>Votre mot de passe a bien été changer</b><input style='width: 150px; margin-left: calc(50% - 75px); background-color: gray;' type="submit" onclick="document.location.href='/'" value="Retour"></div>
+        <div style='display: none; color:red;' id='send_error'><b>Votre mot de passe n'a pas été modifier...</b></div>
+        <div id='change_password'>
+        <% if (find) { %>
+        <h3><i>Mot de passe oublié</i></h3>
+        <br>
+        <input style='width: 40%;' type="password" id="input_inscr" name="newmdp_lost" placeholder="Nouveau mot de passe"></input>
+        <br><br>
+        <input style='width: 40%;' type="password" id="input_inscr" name="newconfirm_lost" placeholder="Confirmation"></input>
+        <br><br>
+        <input style='width: 250px; margin-left: calc(50% - 125px);' type="submit" id='send_mdp_lost' onclick="send_password();" value="Modifier votre mot de passe">
+        <br>
+        <input style='width: 150px; margin-left: calc(50% - 75px); background-color: gray;' type="submit" onclick="document.location.href='/'" value="Retour"></div>
+        <% } else { %> <img src='/images/404.gif' style='width: 250px;'><br><br><i id='redir'>Une erreur est survenue redirection dans</i> <% } %>
+    </div>
+
+<% include footer.ejs %>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript">var token = <%- JSON.stringify(token) %>;</script>
+  <script src="/mdp_lost.js"></script>
+  </body>
+</html>

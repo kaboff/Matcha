@@ -1,0 +1,15 @@
+<div class="edit_edit">
+	<div class='send_done'></div>
+    <h2>Changement d'adresse email</h2>
+    Nouvelle adresse email<br>
+    <input type="text" name="new_mail" value=''/><br>
+    *(Vous recevrez un email sur votre nouvelle adresse tant que celle ci n'est pas confirmer votre adresse de base restera actif)
+    <br><br><input name='send_new_mail' style='background: lightgreen;' type='submit' value='Changer'>
+</div>
+
+<script>
+  $.holdReady( true );
+  $.getScript( "/edit_mail.js", function() {
+    $.holdReady( false );
+  });
+</script>

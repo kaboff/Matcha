@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Meetal</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/matcha.css">
+    <link rel="stylesheet" type="text/css" href="/angularjs-slider/dist/rzslider.css"/>
+    <link rel="stylesheet" href="/ng-tags-input.min.css"/>
+  </head>
+  <body ng-app="matcha" ng-controller="search">
+  <% include header.ejs %>
+
+    <div id="cont_wrapper_angular">
+    <div class='my_filter'>
+    <tags-input ng-model="tags" placeholder="Recherche par tags">
+      <auto-complete source="autocomplete($query)" min-length=1></auto-complete>
+    </tags-input>
+        <div class='filter_div'>
+          <h2>Age</h2>
+          <rzslider rz-slider-model="slider_age.minValue"
+              rz-slider-high="slider_age.maxValue"
+              rz-slider-options="slider_age.options"></rzslider>
+        </div>
+        <div class='filter_div'>
+          <h2>Recherche</h2>
+          <input style='    width: 90%;
+    left: 20px;
+    font-size: 1.5em;
+    top: 20px;
+    text-transform: uppercase;
+    font-family: Open Sans Condensed, sans-serif;
+    color: #797979;
+    font-weight: 100;
+    font-style: italic;' type='text' val='' ng-model="my_search">
+          <i>(Ville, Description, Musique)</i>
+        </div>
+        <div class='filter_div'>
+          <h2>Score de Popularite</h2>
+          <rzslider rz-slider-model="slider_score.minValue"
+              rz-slider-high="slider_score.maxValue"
+              rz-slider-options="slider_score.options"></rzslider>
+          </div>
+        <div class='cont_orderby'>
+          <div class='sort_div'>
+            <h2>Tags<li ng-click="sortBy('-same_tags', $event)" class="ion-close" data-pack="default" data-tags=""></li></h2>
+          </div>
+          <div class='sort_div'>
+            <h2>Distance<li ng-click="sortBy('distance', $event)" class="ion-close" data-pack="default" data-tags=""></li></h2>
+          </div>
+          <div class='sort_div'>
+            <h2>Score<li ng-click="sortBy('-score', $event)" class="ion-close" data-pack="default" data-tags=""></li></h2>
+          </div>
+          <div class='sort_div'>
+            <h2>Age<li ng-click="sortBy('age', $event)" class="ion-close" data-pack="default" data-tags=""></li></h2><!-- ion-arrow-up-b -->
+          </div>
+        </div>
+    </div>
+    <div class="dropdown-menu">
+    <a ng-click='slide_filter($event)' class="dropdown-button"><span></span></a>
+    </div>  
+      <div ng-repeat="user in all_users | filter:my_search | mytags:{tags} | filter_age: { min: slider_age.minValue, max: slider_age.maxValue } | filter_score: { min: slider_score.minValue, max: slider_score.maxValue } | orderBy:MyOrder:reverse" class="flip-container" style='margin-top: 50px' ontouchstart="this.classList.toggle('hover');">
+	<div class="flipper">
+		<div class="front">
+    <li class="ion-arrow-shrink" ng-click='delete_full_img($event)' data-pack="default" data-tags="pinch"></li>
+    <li class="ion-arrow-expand" ng-click='full_img($event)' data-pack="default" data-tags="fullscreen"></li>
+    <li class="ion-arrow-return-right" ng-click='flip($event)' data-pack="default" data-tags=""></li>
+    <h2 class='user_city'>{{user.city}}</h2>
+    <h2 class='user_score'>Score : {{user.score}}</h2>
+</li><img ng-src="/images/{{user.image ? 'user_img/'+user.image : 'heart.jpg'}}" alt="profile-sample1" class="background"><a href="/profile/{{user.key_id}}">
+<img ng-src="/images/{{user.image ? 'user_img/'+user.image : 'skull.jpg'}}" alt="profile-sample1" class="profile"></a>
+  <figcaption>
+    <h3>{{user.login}} {{user.age}} ans {{sex}}<i ng-if="user.sex == 1" style='color: pink;' class="ion-female"></i>
+    <i ng-if="user.sex == 2" style='color: #00d2ff;' class="ion-male"></i>
+    <div ng-if="user.connect == 1">
+      <span class='connect'>En ligne <div class='user_infos'></div>
+    </div>
+    <div ng-if="user.connect == 0">
+      <span class="disconnect">Actif {{user.activity}}</span>
+    </div>
+    </div>
+  </figcaption>
+		<div class="back">
+      <div class='back_top'>DESCRIPTION</div>
+      <i ng-if="user.biography">{{user.biography}}</i>
+      <i ng-if="!user.biography">Pas de description...</i>
+      <div class='back_bottom'><a href="/profile/{{user.key_id}}">En savoir plus..</a></div>
+    </div>
+	</div>
+</div>
+</div>
+
+<% include footer.ejs %>
+  <script src="/jquery-3.1.1.min.js"></script>
+  <script src="/angular.min.js"></script>
+  <script src="/jquery-ui.min.js"></script>
+  <script src="/angularjs-slider/dist/rzslider.min.js"></script>
+  <script src="/ng-tags-input.min.js"></script>
+  <script type="text/javascript">var all_user = <%- JSON.stringify(all_user) %>;</script>
+  <script src="/meetal.js"></script>
+  </body>
+</html>

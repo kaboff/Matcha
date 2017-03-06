@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Meetal</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/matcha.css">
+  </head>
+  <body>
+  <% include header.ejs %>
+    <div style='display: inline-block' id="cont_wrapper">
+    <div class="wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Classement</th>
+              <th>Pseudo</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody>
+              <% for (i = 0; row[i]; i++){
+              %> <tr <% if (row[i]['user_sex'] == 1) { %>style="background: pink;"<%} else {%>style="background: #40bafd;"<%}%>>
+                  <td class="rank"><%= i+1 %><img id="" src="/images/<% if (row[i]['user_snap_profile']) { %>user_img/<%= row[i]['user_snap_profile'] %><% } else {%>skull.png<%}%>"></td>
+                  <td class="team"><%= row[i]['user_login'] %></td>
+                  <td class="points"><%= row[i]['user_score'] %></td>
+                </tr>
+              <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+<% include footer.ejs %>
+ <script src="/jquery-3.1.1.min.js"></script>
+  </body>
+</html>

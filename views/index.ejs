@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Meetal</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/index_tmp.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  </head>
+  <body>
+
+    <div id='div_cont_lost'>
+      <div id='div_mdp_lost'>
+        <h3><i>Mot de passe oublié</i></h3>
+        <b><i id='not_exist' style='display: none; color: red;'>Cette adresse email n'existe pas.</i></b>
+        <input type="text" id="input_inscr" name="email-lost" placeholder="Adresse email"></input>
+        <br><br>
+        <input style='width: 250px; margin-left: calc(50% - 125px);' type="submit" id='send_mdp_lost' onclick='send_lost();' value="Renvoie de mot de passe">
+        <br>
+        <input style='width: 150px; margin-left: calc(50% - 75px); background-color: gray;' type="submit" onclick="hidden_mdp_lost();" value="Retour">
+      </div>
+    </div>
+
+    <header id="wrap_img">
+        <img id='logo' src="/images/logo.png">
+      <button id="co_button" onclick="log();">CONNEXION</button>
+      <button id="upload" onclick="inscr();">INSCRIPTION</button>
+      </header>
+    <div class="cont_wrapper">
+      <div id='complete'></div>
+      <% if (confirm) { 
+        if (msg == 'good') {%>
+        <div id='complete'>Votre compte a bien ete valider.</div>
+      <% } 
+      else if (msg == 'new_mail') { %>
+        <div id='complete'>Votre nouvelle adresse-email est active.</div>
+      <%} 
+      else {%>
+        <div id='complete'>Une erreur est survenue. </div>
+        <% } 
+      } %>
+
+      <div id='error_hidden'>
+          <div id="error_inscr">
+      <b style="color: crimson;" id="msg_error"></b>
+      <a href="#" onclick="hidden_log();">
+        <img style="margin-left: 20px; width: 15px; height: 15px;" src="/images/icon/cross.png">
+      </a>
+    </div>
+  </div>
+  <div id="log_active">
+  <img id='co_first_guys' src="/images/guys.png">
+  <img id='co_second_guys' src="/images/guys2.png">
+  <div class="main-form">
+  <img class='logo' src="/images/skull.png">
+  <input id='login_co' name="login_co" type="text" placeholder="Pseudo" value="">
+  <input id='pass_co' name="pass_co" type="password" placeholder="Mot de passe" value="">
+  <br><br><br>
+  <input id="but_log" onclick="connexion();" type="submit" value="Connexion"><br>
+  <b><a href="#" onclick="mdp_lost();">Mot de passe oublié ?</a></b>
+  <div>
+    <i><a href="#" onclick="inscr();">Vous n'êtes pas encore inscrits ?</a></i>
+  </div>
+</div>
+        </div>
+            <div id='cont_block'>
+                <img id='co_first_guys' src="/images/guys.png">
+  <img id='co_second_guys' src="/images/guys2.png">
+              <div class="main-form" id='main_form_id'>
+              <div id="cont_iam">JE SUIS <br>
+          <select id="iam">
+            <option></option>
+            <option value="femme">Une Femme</option>
+            <option value="homme">Un Homme</option>
+          </select>
+        </div>
+        <div id="cont_direction">ORIENTATION<br>
+        <select id="orientation">
+          <option><options>
+          <option value="hetero">Hétéro<options>
+          <option value="bisexuel">Bisexuel<options>
+          <option value="gay">Gay / Lesbienne<options>
+        </select>
+        </div>
+        <div id="cont_years">DATE DE NAISSANCE<br>
+        <select id="day" name="day"><option>Jour<options></select>
+        <select id="month" name="month">
+          <option value="">Mois<options>
+          <option value="1">Janvier<options>
+          <option value="2">Février<options>
+          <option value="3">Mars<options>
+          <option value="4">Avril<options>
+          <option value="5">Mai<options>
+          <option value="6">Juin<options>
+          <option value="7">Juillet<options>
+          <option value="8">Aout<options>
+          <option value="9">Septembre<options>
+          <option value="10">Octobre<options>
+          <option value="11">Novembre<options>
+          <option value="12">Décembre<options>
+        </select>
+        <select id="years" name="years"><option>Année</option></select>
+        </div><br><br>
+        <input type="text" id="input_inscr" name="email" placeholder="Adresse email"></input>
+        <input type="text" id="input_inscr" name="login" placeholder="Pseudo"></input>
+        <input type="text" id="input_inscr" name="name" placeholder="Nom"></input>
+        <input type="text" id="input_inscr" name="surname" placeholder="Prenom"></input>
+        <br><br><i>(*) Mot de passe : obligatoirement 1 lettre et 1 chiffre </i><br>
+        <input type='password' id="input_inscr" name="mdp" placeholder="Mot de passe"></input>
+        <input type='password' id="input_inscr" name="mdpsure" placeholder="Confirmation"></input><br><br>
+                <div id="last_block"><input type='submit' id='inscription' value="Inscription" style='width: 50%; margin-left: calc(50% - 25%);'></input>
+        <br><i>Si vous êtes déjà inscrit sur ce site, cliquez <a href="#" onclick="log();" style='color: red;'>ici</a> pour vous connecter.</i></div>
+        </div>
+  </div>
+</div>
+<% include footer.ejs %>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/index.js"></script>
+  </body>
+</html>

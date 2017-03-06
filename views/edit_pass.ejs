@@ -1,0 +1,25 @@
+<div class="edit_edit">
+    <div class='send_done'></div>
+    <h2>Changement de mot de passe</h2>
+    Nouveau mot de passe<br>
+    <input type="password" name="pass1" value=''/><br>
+    Retaper nouveau mot de passe<br>
+    <input type="password" name="pass2" value=''/><br>
+    Ancien mot de passe<br>
+    <input type="password" name="pass3" value=''/><br>
+    <br><input name='send_change_pass' style='background: lightgreen;' type='submit' value='Changer'>
+    <br><br>
+    <hr style='width: 500px;'>
+    <h2>Générer un mot de passe aléatoire</h2>
+    Mot de passe actuelle<br>
+    <input type="password" name="mdp_rand" value=''/><br>
+    *(Vous recevrez votre nouveau de mot de passe par email)
+    <br><br><input name='send_rand' style='background: lightgreen;' type='submit' value='Changer'>
+</div>
+
+<script>
+  $.holdReady( true );
+  $.getScript( "/edit_pass.js", function() {
+    $.holdReady( false );
+  });
+</script>

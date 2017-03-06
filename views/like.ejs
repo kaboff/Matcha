@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Meetal</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/matcha.css">
+  </head>
+  <body>
+  <% include header.ejs %>
+    <div style='display: inline-block' id="cont_wrapper">
+          <div class='top-choice'><i>Meet</i></div>
+      <div class='my_meet'>
+      <% if (user) {%>
+      <% for (var i = 0; i != row.length; i++){ 
+           var key = row[i]['user_id'].toString();
+           var other_array = '';
+           for (var o = 0; o != my_action.length; o++)
+            {
+                if (my_action[o]['action_sender'] == row[i]['user_id'])
+                  other_array = my_action[o];
+            }
+          if (user['id'] != row[i]['user_id'] && other_array != '' && other_array['action'] == 'like') {%>
+            <div class="flip-container" style='margin-top: 50px' ontouchstart="this.classList.toggle('hover');">
+            <i><%= my_lib.getTime(my_lib.return_action_json(user['id'], row[i]['user_id'], my_action)) %></i>
+  <div class="flipper">
+    <div class="front">
+    <li class="ion-arrow-shrink" data-pack="default" data-tags="pinch"></li>
+    <li class="ion-arrow-expand" data-pack="default" data-tags="fullscreen"></li>
+    <li class="ion-arrow-return-right" data-pack="default" data-tags=""></li>
+    <h2 class='user_city'><%=row[i]['user_city']%></h2>
+    <h2 class='user_score'>Score : <%=row[i]['user_score']%></h2>
+  
+</li><img src="/images/<% if (row[i]['user_snap_profile']) { %>user_img/<%= row[i]['user_snap_profile'] %><% } else { %>heart.jpg<% } %>" alt="profile-sample1" class="background"><a href="/profile/<%= crypto.createHmac('sha256', key).digest('hex') %>"><img src="/images/<% if (row[i]['user_snap_profile']) { %>user_img/<%= row[i]['user_snap_profile'] %><% } else { %>skull.jpg<% } %>" alt="profile-sample1" class="profile"></a>
+  <figcaption>
+    <h3><%= my_lib.Capitalize(row[i]['user_login']) %> <%= my_lib.getage(new Date(row[i]['user_birth'])) %> ans<% if (row[i]['user_sex'] == 1) {%>
+          <i style='color: pink;' class="ion-female"></i> <% } else { %> <i style='color: #00d2ff;' class="ion-male"></i> <% } %>
+    <% if (row[i]['user_connect']) { %><span class='connect'>En ligne <div class='user_infos'></div> <% } else { %><span class='disconnect'>Actif <%= my_lib.getTime(row[i]['user_last_activity']) %><% } %></span></h3>
+    <% if (my_lib.see_or_not(user['id'], row[i]['user_id'], my_action)) {%><div class='new'>NEW</div><% } %>
+  </figcaption>
+      </div>
+    <div class="back">
+      <div class='back_top'>DESCRIPTION</div>
+      <%if (row[i]['user_biography']) {%><%= row[i]['user_biography'] %><%} else {%>Pas de description...<%}%>
+      <div class='back_bottom'><a href="/profile/<%= crypto.createHmac('sha256', key).digest('hex') %>">En savoir plus..</a></div>
+    </div>
+  </div>
+</div>
+  <%} } }%>
+  </div>
+</div>
+
+<% include footer.ejs %>
+ <script src="/jquery-3.1.1.min.js"></script>
+ <script src="/like.js"></script>
+  </body>
+</html>

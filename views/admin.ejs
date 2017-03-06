@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Meetal</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/matcha.css">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+  </head>
+  <body onload="fadeoutloader()">
+  <% include header.ejs %>
+    <div id="cont_wrapper">
+      <div id='menu_left'>
+          <div class='hide_menu_left'><img src='/images/icon/arrow-left.png'></div>
+          <b>Administration</b>
+          <br><hr><br>
+              <ul style='list-style-type: none; padding: 0;'>
+      <li><a name='report' href="#"><img src="/images/icon/compose-3.png">Rapport</a></li>
+      <li><a name='list_user' href="#"><img src="/images/icon/user-4.png">Liste des utilisateurs</a></li>
+    </ul>
+      </div>
+      <div class='show_menu_left'><img src='/images/icon/arrow-right.png'></div>
+        <div id='error_hidden'>
+          <div id="error_inscr">
+      <b style="color: crimson; font-size: 1.2em;" id="msg_error"></b>
+      <a href="#" onclick="hidden_log();">
+        <img src="/images/icon/cross.png">
+      </a>
+    </div>
+    <br><br></div>
+    <div id='layout' class='cont_right'><% include admin_report.ejs %></div>
+  </div>
+  <% include footer.ejs %>
+ <script src="/ejs.min.js"></script>
+ <script src="/jquery-3.1.1.min.js"></script>
+ <script src="/jquery-ui.min.js"></script>
+ <script src="/socket.io/socket.io.js"></script>
+ <script type="text/javascript" src="http://l2.io/ip.js?var=myip"></script>
+ <script src="/admin.js"></script>
+  </body>
+</html>

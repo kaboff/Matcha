@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Meetal</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/matcha.css">
+  </head>
+  <body>
+    <div class='background_gray'>
+        <div class='see_all_img'>
+        <% if (profile_user[0]['user_snap_profile']) { %>
+          <img class='arrow_cross' src="/images/icon/cross.png">
+          <img class='arrow_left' src="/images/icon/arrow-left.png">
+          <% if (profile_user[0]['user_snap_profile']) { %><div class='img_big img_block'><img src="/images/user_img/<%= profile_user[0]['user_snap_profile']%><%} %>"></div>
+          <% for (var i = 1; i != 6; i++) { if (profile_user[0]['user_snap' + i] && profile_user[0]['user_snap_profile'] != profile_user[0]['user_snap' + i]) {%><div class='img_big'><img src="/images/user_img/<%= profile_user[0]['user_snap' + i]%>"></div><% } }%>
+          <img class='arrow_right' src="/images/icon/arrow-right.png"><% } %>
+        </div>
+      </div>
+  <% include header.ejs %>
+    <div id="cont_wrapper_page">
+      <div class='send_done'>Vous avez bien report cette utilisateur.</div>
+      <div class='content_user'>
+        <b>Score : <%= profile_user[0]['user_score'] %><br><% if (profile_user[0]['user_connect']) {%><connect>En ligne</connect><%} else {%><disconnect>En ligne <%= my_lib.getTime(profile_user[0]['user_last_activity']) %><%}%></disconnect></b>
+       <li class="ion-minus-circled" data-pack="default" data-tags="hide, remove, minimize, -"></li>
+        <% var find = false; 
+        for (var z = 0; my_action[z]; z++) {
+          if (my_action[z]['action_sender'] == user.id && my_action[z]['action_receiver'] == profile_user[0]['user_id'] && my_action[z]['action'] == 'report')
+          {
+            find = true;
+          }
+        }
+        if (!find) {%>
+          <li class="ion-alert-circled" data-pack="default" data-tags="attention, warning, notice, !, exclamation"></li>
+        <% } %>
+        <figure>
+            <a href='#'><img id='img_profil'></a>
+        </figure>
+        <h2></h2>
+        <h3><%= profile_user[0]['user_name'] %> <%= profile_user[0]['user_surname'] %></h3>
+    <% if (user.snap && profile_user[0]['user_snap_profile']) {%>
+              <% if (my_lib.exist_on_json(user['id'], profile_user[0]['user_id'], my_action) == 'like') { 
+        if (my_lib.its_a_match_or_not(user['id'], profile_user[0]['user_id'], my_action)) {%>
+          <a href="#"><i style='color: red' class="ion-heart"></i></a>
+        <% } else { %>
+          <a href="#"><i style='color: deepskyblue' class="ion-heart"></i></a><%
+        } }
+        else if (my_lib.exist_on_json(user['id'], profile_user[0]['user_id'], my_action) == 'dislike'){ %>
+          <i style='color: red' class="ion-heart-broken"></i><%
+        }
+      else { %>
+          <a href="#"><i <% if (my_lib.other_like(user['id'], profile_user[0]['user_id'], my_action)) { %>style='color: orange;'<%}%> class="ion-heart"></i></a>
+          <a href="#"><i class="ion-heart-broken"></i></a>
+        <%} } 
+    else if (!user.snap){%>
+          <p>Vous n'avez pas de photo, vous ne pouvez donc pas meet</p><%}
+    else{%>
+         <p>L'utilisateur n'a pas de photo, vous ne pouvez donc pas le meet</p><%}
+    %>
+      </div>
+      <ul class='navbar'>
+       <li><a class='navbar_hover' href="#">Description</a></li>
+       <li><a href="#">Musique</a></li>
+       <li><a href="#">Centre d'interet</a></li>
+      </ul>
+      <div class='cont_user_bottom'>
+            <div class='cont_description'>
+              <div class='nav_cont_desc'><h2>Ma description</h2>
+                <% if (profile_user[0]['user_biography']) { %>
+                  <%= profile_user[0]['user_biography'] %>
+                <% } 
+                else { 
+                    %>Non renseigné<% } %></div>
+              <div class='nav_bottom_cont'>
+                <h2>Ma taille</h2>
+                <p><%if (profile_user[0]['user_size']) { %><%= (""+profile_user[0]['user_size']).split("")[0] + ',' + (""+profile_user[0]['user_size']).split("")[1] + (""+profile_user[0]['user_size']).split("")[2] + ' mètres'%><% } else {%>Non renseigné<% } %></p>
+              </div><div class='nav_bottom_cont'>
+              <h2>Mon poids</h2>
+              <p><%if (profile_user[0]['user_poid']) { %><%= profile_user[0]['user_poid'] + ' Kilos'%><% } else {%>Non renseigné<% } %></p>
+               </div><div class='nav_bottom_cont'>
+              <h2>Mes cheveux</h2>
+              <p><%if (profile_user[0]['user_hairs']) { %><%= profile_user[0]['user_hairs'] %><% } else {%>Non renseigné<% } %></p>
+              </div><div class='nav_bottom_cont'>
+              <h2>Mes yeux</h2>
+              <p><%if (profile_user[0]['user_eyes']) { %><%= profile_user[0]['user_eyes'] %><% } else {%>Non renseigné<% } %></p>
+              </div>
+            </div>
+            <div class='cont_music'>
+              <%if (profile_user[0]['user_music']) { for(var i = 0; profile_user[0]['user_music'].split(';')[i]; i++) { if (profile_user[0]['user_music'].split(';')[i] != ''){%><div class='my_list_music'><%= profile_user[0]['user_music'].split(';')[i]; %></div><% }} } else {%>Non renseigné<% } %>
+              </div>
+            <div class='cont_interest'>
+              <%if (profile_user[0]['user_tags']) { for(var i = 0; profile_user[0]['user_tags'].split(';')[i]; i++) { if (String(profile_user[0]['user_tags'].split(';')[i]).trim() != ''){%><div class='my_list_music'><%= String(profile_user[0]['user_tags'].split(';')[i]).charAt(0).toUpperCase() + String(profile_user[0]['user_tags'].split(';')[i]).substring(1).toLowerCase(); %></div><% }} } else {%>Non renseigné<% } %>
+              </div>
+            </div>
+      </div>
+    </div>
+  <% include footer.ejs %>
+
+   <script src="/jquery-3.1.1.min.js"></script>
+   <script src="/socket.io/socket.io.js"></script>
+   <script type="text/javascript" src="http://l2.io/ip.js?var=myip"></script>
+   <script type="text/javascript">var request_user = <%- JSON.stringify(profile_user) %>;</script>
+   <script src="/profile.js"></script>
+   <script type="text/javascript">
+    $(document).ready(function() {
+      $('.ion-heart').click(function()
+      {
+      <% if (my_lib.its_a_match_or_not(user['id'], profile_user[0]['user_id'], my_action) || my_lib.me_like(user['id'], profile_user[0]['user_id'], my_action)) {%>
+        profile_1(this);
+      <% } else { %>
+        profile_2(this);
+        <% } %>
+      });
+
+      $('.ion-heart-broken').click(function()
+      {
+        <% if (my_lib.exist_on_json(user['id'], profile_user[0]['user_id'], my_action) != 'dislike'){ %>
+          profile_3(this);
+        <% } %>
+      });
+    });
+  </script>
+  </body>
+</html>

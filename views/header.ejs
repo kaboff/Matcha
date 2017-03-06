@@ -1,0 +1,49 @@
+    <header>
+      <a href='#'><img class='my_notif' src=/images/icon/bell-white.png></a>
+      <b id="mypage"><%= user['login'] %></b>
+      <a href="/meetal"><img id='logo' src="/images/logo.png"></a>
+      <div class="dropdown">
+        <img id='user_logo' src='/images/skull.jpg'>
+        <div class="dropdown-content">
+          <a href="/meet">Meet</a>
+          <a href="/visite">Visites</a>
+          <a href="/message">Messages</a>
+          <a href='#'>--------------</a>
+          <a href='/classement'>Classement</a>
+          <a href='/mypage'>Ma page de profil</a>
+          <a href="/edit_my_information">Mon compte</a>
+          <a href='/logout'>Se déconnecter</a>
+        </div>
+        <ul class='notifications_header'>
+          <li class='ion-eye'><span></span></li>
+          <li class='ion-heart'><span></span></li>
+          <li class='ion-email'><span></span></li>
+        </ul>
+      </div>
+    </header>
+    <div class='new_notif'>
+      <img src=''>
+      <div class='content_notif'>
+        <h2></h2>
+        <i><a href="#">Voir son profil</a></i>
+      </div>
+    </div>
+    <div id='background_loader'>
+      <div id="loader"></div>
+    </div>
+    <div id='background_loading'>
+      <div id="loading"></div>
+    </div>
+  <script src="/crypto-js/core.js"></script>
+  <script src="/crypto-js/crypto-js.js"></script>
+  <script src="/crypto-js/hmac-sha256.js"></script>
+  <script src="/jquery-3.1.1.min.js"></script>
+  <script src="/jquery-ui.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript">var me = <%- JSON.stringify(user) %>;</script>
+  <script>
+    $.holdReady( true );
+    $.getScript( "/header.js", function() {
+      $.holdReady( false );
+    });
+  </script>

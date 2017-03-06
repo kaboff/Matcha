@@ -1,0 +1,28 @@
+<div class="edit_edit">
+<div class='send_done'>Les changement apporté on été modifié.</div>
+    <h2>Information basique</h2>
+    Nom<br><input type="text" name="edit_myname" value='<%= row[0]['user_name'] %>'/><br>
+    Prenom<br><input type="text" name="edit_mysurname" value='<%= row[0]['user_surname'] %>'/><br><br>
+<div class='menu_geocalisation'>
+  <div class='geo_menu_left'>
+      <div>Localisation google<br><br><a onclick="my_geocal()" href="#"><img style='width: 50px;' src="/images/icon/map.png"></a></div>
+  </div>
+  <div class='geo_menu_right'>
+      Code postal
+      <br><br>
+      <input id='zipcode' onkeypress='return isNumberKey(event)' style='width: 75%;' type='text' maxlength="5" value='<%= row[0]['user_city'] %>'>
+  </div>
+  <br><br>
+  <input id='exists_city' style='background: lightgray' type=text value="" disabled>
+  <br><br>
+</div>
+<br><br>
+<input id='send_change' style='background: lightgreen;' type='submit' value='Changer'>
+</div>
+
+<script>
+  $.holdReady( true );
+  $.getScript( "/edit_basic.js", function() {
+    $.holdReady( false );
+  });
+</script>
